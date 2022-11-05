@@ -23,6 +23,7 @@ class DatabaseSeeder extends Seeder
             AreasEspecificasSeeder::class,
             AreasDetalhadasSeeder::class,
             CursosSuperioresSeeder::class,
+            CursosPosGraduacaoSeeder::class,
         ]);
     }
 }
