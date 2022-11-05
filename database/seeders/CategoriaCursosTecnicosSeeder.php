@@ -65,10 +65,6 @@ class CategoriaCursosTecnicosSeeder extends Seeder
      */
     public function run()
     {
-        Categorias::upsert(
-            $this->categorias,
-            ['id'],
-            ['nome']
-        );
+        Categorias::insertOrIgnore($this->categorias);
     }
 }

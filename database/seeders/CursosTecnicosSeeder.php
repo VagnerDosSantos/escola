@@ -1212,10 +1212,6 @@ class CursosTecnicosSeeder extends Seeder
      */
     public function run()
     {
-        CursosTecnicos::upsert(
-            $this->cursos,
-            ['id'],
-            ['nome', 'categoria_id']
-        );
+        CursosTecnicos::insertOrIgnore($this->cursos);
     }
 }
