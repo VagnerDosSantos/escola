@@ -8,11 +8,26 @@ use Illuminate\Database\Seeder;
 class CategoriaComponentesCurricularesSeeder extends Seeder
 {
     private array $categorias = [
-        1 => 'Linguagens',
-        2 => 'Matemática',
-        3 => 'Ciências da Natureza',
-        4 => 'Ciências Humanas e Sociais',
-        5 => 'Outras Áreas',
+        [
+            'id' => 1,
+            'nome' => 'Linguagens',
+        ],
+        [
+            'id' => 2,
+            'nome' => 'Matemática',
+        ],
+        [
+            'id' => 3,
+            'nome' => 'Ciências da Natureza',
+        ],
+        [
+            'id' => 4,
+            'nome' => 'Ciências Humanas e Sociais',
+        ],
+        [
+            'id' => 5,
+            'nome' => 'Outras Áreas',
+        ],
     ];
 
     /**
@@ -22,15 +37,10 @@ class CategoriaComponentesCurricularesSeeder extends Seeder
      */
     public function run()
     {
-        foreach ($this->categorias as $id => $nome) {
-            Categorias::firstOrCreate(
-                [
-                    'id' => $id,
-                ],
-                [
-                    'nome' => $nome,
-                ]
-            );
-        }
+        Categorias::upsert(
+            $this->categorias,
+            ['id'],
+            ['nome']
+        );
     }
 }

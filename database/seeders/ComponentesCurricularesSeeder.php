@@ -102,14 +102,14 @@ class ComponentesCurricularesSeeder extends Seeder
                 'abreviacao' => 'Religião',
             ],
             32 => [
-                'nome' => '  Estágio curricular supervisionado',
+                'nome' => 'Estágio curricular supervisionado',
                 'abreviacao' => 'Estágio',
             ],
             33 => [
-                'nome' => '  Projeto de vida',
-                'abreviacao' => null
+                'nome' => 'Projeto de vida',
+                'abreviacao' => null,
             ],
-        ]
+        ],
     ];
 
     /**
@@ -121,7 +121,7 @@ class ComponentesCurricularesSeeder extends Seeder
     {
         foreach ($this->componentesCurriculares as $categoriaId => $componentesCurriculares) {
             foreach ($componentesCurriculares as $censoId => $componenteCurricular) {
-                ComponentesCurriculares::firstOrCreate(
+                ComponentesCurriculares::updateOrCreate(
                     [
                         'censo_id' => $censoId,
                         'permite_excluir' => false,
