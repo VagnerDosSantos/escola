@@ -30,6 +30,7 @@ class DatabaseSeeder extends Seeder
             MediacaoPedagogicaSeeder::class,
             TipoAtendimentoPedagogicoSeeder::class,
             EtapasSeeder::class,
+            AtividadesAeeSeeder::class,
         ]);
     }
 }
