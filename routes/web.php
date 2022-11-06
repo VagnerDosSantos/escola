@@ -1,5 +1,6 @@
 <?php
 
+use App\Enums\GrauAcademico;
 use App\Enums\Infraestruturas\DependenciaEscolar;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -15,9 +16,8 @@ use Inertia\Inertia;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
 Route::get('teste', function () {
-    // $teste = array_combine();
-    dd(DependenciaEscolar::toArray());
 });
 
 Route::get('/', function () {
@@ -33,4 +33,4 @@ Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
