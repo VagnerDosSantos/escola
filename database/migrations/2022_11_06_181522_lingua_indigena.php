@@ -12,11 +12,9 @@ return new class() extends Migration {
      */
     public function up()
     {
-        Schema::create('formacao_superior_areas_especificas', function (Blueprint $table) {
-            $table->string('id', 10)->primary();
-            $table->string('nome');
-            $table->string('area_geral_id', 10);
-            $table->foreign('area_geral_id')->references('id')->on('formacao_superior_areas_gerais');
+        Schema::create('lingua_indigena', function (Blueprint $table) {
+            $table->integer('id')->primary();
+            $table->string('nome', 100);
         });
     }
 
@@ -27,6 +25,6 @@ return new class() extends Migration {
      */
     public function down()
     {
-        Schema::dropIfExists('formacao_superior_areas_especificas');
+        Schema::dropIfExists('lingua_indigena');
     }
 };

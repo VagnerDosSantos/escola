@@ -24,6 +24,7 @@ class DatabaseSeeder extends Seeder
             AreasDetalhadasSeeder::class,
             CursosSuperioresSeeder::class,
             InstituicoesEnsinoSeeder::class,
+            LinguaIndigenaSeeder::class,
         ]);
     }
 }
