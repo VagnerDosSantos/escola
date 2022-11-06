@@ -29,6 +29,7 @@ class DatabaseSeeder extends Seeder
             ModalidadeSeeder::class,
             MediacaoPedagogicaSeeder::class,
             TipoAtendimentoPedagogicoSeeder::class,
+            EtapasSeeder::class,
         ]);
     }
 }
