@@ -31,6 +31,7 @@ class DatabaseSeeder extends Seeder
             TipoAtendimentoPedagogicoSeeder::class,
             EtapasSeeder::class,
             AtividadesAeeSeeder::class,
+            AtividadesComplementaresSeeder::class,
         ]);
     }
 }
