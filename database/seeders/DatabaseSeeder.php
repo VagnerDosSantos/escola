@@ -25,6 +25,10 @@ class DatabaseSeeder extends Seeder
             CursosSuperioresSeeder::class,
             InstituicoesEnsinoSeeder::class,
             LinguaIndigenaSeeder::class,
+            EstruturaCurricularSeeder::class,
+            ModalidadeSeeder::class,
+            MediacaoPedagogicaSeeder::class,
+            TipoAtendimentoPedagogicoSeeder::class,
         ]);
     }
 }
