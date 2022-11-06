@@ -33,6 +33,7 @@ class DatabaseSeeder extends Seeder
             AtividadesAeeSeeder::class,
             AtividadesComplementaresSeeder::class,
             PaisesSeeder::class,
+            EstadosSeeder::class,
         ]);
     }
 }
