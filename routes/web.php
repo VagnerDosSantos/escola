@@ -1,7 +1,5 @@
 <?php
 
-use App\Enums\GrauAcademico;
-use App\Enums\Infraestruturas\DependenciaEscolar;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -18,6 +16,27 @@ use Inertia\Inertia;
 */
 
 Route::get('teste', function () {
+    $arquivo = explode(PHP_EOL, file_get_contents(public_path('ies.csv')));
+    $json = [];
+
+    foreach ($arquivo as $row) {
+        if ($row == '') {
+            continue;
+        }
+
+        $row = explode(';', $row);
+
+        $json[] = [
+            'id' => "'$row[0]',",
+            'nome' => "'$row[1]',",
+            'situacao' => "'$row[2]',",
+            'categoria' => "'$row[3]',",
+            'codigo_municipio' => "'$row[4]'",
+        ];
+    }
+
+    echo '<pre>';
+    print_r($json);
 });
 
 Route::get('/', function () {
