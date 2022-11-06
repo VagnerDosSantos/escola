@@ -34,6 +34,7 @@ class DatabaseSeeder extends Seeder
             AtividadesComplementaresSeeder::class,
             PaisesSeeder::class,
             EstadosSeeder::class,
+            MunicipiosSeeder::class,
         ]);
     }
 }

@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Localidade\Estado;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -16,8 +17,14 @@ use Inertia\Inertia;
 */
 
 Route::get('teste', function () {
-    $arquivo = explode(PHP_EOL, file_get_contents(public_path('paises.csv')));
-    $json = 'private array $paises = [';
+    $arquivo = explode(PHP_EOL, file_get_contents(public_path('municipios.csv')));
+    $json = 'private array $municipios = [';
+    $estadosArray = Estado::all()->toArray();
+    $estados = [];
+
+    foreach ($estadosArray as $estado) {
+        $estados[$estado['sigla']] = $estado['id'];
+    }
 
     foreach ($arquivo as $row) {
         if ('' == $row) {
@@ -25,19 +32,20 @@ Route::get('teste', function () {
         }
 
         $row = explode(';', $row);
-        $nacionalidade = '' == $row[2] ? null : "'$row[2]'";
-        $ddi = '' == $row[3] ? null : "'$row[3]'";
-
+        // dd($row[0], $estados[$row[0]]);
+        // $estadoId = $estados[$row[0]];
+        $estadoId = Estado::where('sigla', $row[0])->first()->id;
+        $nome = addslashes($row[2]);
         $json .= "
         [
-            'id' => '$row[0]',
-            'nome' => '$row[1]',
-            'nacionalidade' => $nacionalidade,
-            'ddi' => $ddi,
+            'id' => '$row[1]',
+            'nome' => '$nome',
+            'estado_id' => $estadoId,
         ],";
     }
 
-    $json .= '];';
+    $json .= '
+];';
 
     echo '<pre>';
     print_r($json);

@@ -1,6 +1,7 @@
 {
     "preset": "symfony",
     "notPath": [
-        "database/seeders/InstituicoesEnsinoSeeder.php"
+        "database/seeders/InstituicoesEnsinoSeeder.php",
+        "database/seeders/MunicipiosSeeder.php"
     ]
 }
