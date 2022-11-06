@@ -16,8 +16,8 @@ use Inertia\Inertia;
 */
 
 Route::get('teste', function () {
-    $arquivo = explode(PHP_EOL, file_get_contents(public_path('ies.csv')));
-    $json = [];
+    $arquivo = explode(PHP_EOL, file_get_contents(public_path('paises.csv')));
+    $json = 'private array $paises = [';
 
     foreach ($arquivo as $row) {
         if ('' == $row) {
@@ -25,15 +25,19 @@ Route::get('teste', function () {
         }
 
         $row = explode(';', $row);
+        $nacionalidade = '' == $row[2] ? null : "'$row[2]'";
+        $ddi = '' == $row[3] ? null : "'$row[3]'";
 
-        $json[] = [
-            'id' => "'$row[0]',",
-            'nome' => "'$row[1]',",
-            'situacao' => "'$row[2]',",
-            'categoria' => "'$row[3]',",
-            'codigo_municipio' => "'$row[4]'",
-        ];
+        $json .= "
+        [
+            'id' => '$row[0]',
+            'nome' => '$row[1]',
+            'nacionalidade' => $nacionalidade,
+            'ddi' => $ddi,
+        ],";
     }
+
+    $json .= '];';
 
     echo '<pre>';
     print_r($json);

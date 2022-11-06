@@ -32,6 +32,7 @@ class DatabaseSeeder extends Seeder
             EtapasSeeder::class,
             AtividadesAeeSeeder::class,
             AtividadesComplementaresSeeder::class,
+            PaisesSeeder::class,
         ]);
     }
 }
