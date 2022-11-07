@@ -12,10 +12,12 @@ return new class() extends Migration {
      */
     public function up()
     {
-        Schema::create('escolas', function (Blueprint $table) {
-            $table->id();
-            $table->string('codigo_inep', 10)->unique();
-            $table->timestamps();
+        Schema::create('orgaos_regionais', function (Blueprint $table) {
+            $table->string('id', 20)->primary();
+            $table->string('nome', 100);
+            $table->integer('estado_id');
+
+            $table->foreign('estado_id')->references('id')->on('estados');
         });
     }
 
@@ -26,6 +28,6 @@ return new class() extends Migration {
      */
     public function down()
     {
-        Schema::dropIfExists('escolas');
+        Schema::dropIfExists('orgaos_regionais');
     }
 };

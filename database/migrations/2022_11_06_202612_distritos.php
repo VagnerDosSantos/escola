@@ -16,6 +16,7 @@ return new class() extends Migration {
             $table->string('id', 20)->primary();
             $table->string('nome', 100);
             $table->string('municipio_id', 10);
+
             $table->foreign('municipio_id')->references('id')->on('municipios');
         });
     }

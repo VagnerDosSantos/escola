@@ -36,6 +36,7 @@ class DatabaseSeeder extends Seeder
             EstadosSeeder::class,
             MunicipiosSeeder::class,
             DistritosSeeder::class,
+            OrgaoRegionalSeeder::class,
         ]);
     }
 }

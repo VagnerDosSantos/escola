@@ -9,167 +9,140 @@ class EstadosSeeder extends Seeder
 {
     private array $estados = [
         [
-            'id' => '1',
+            'id' => '12',
             'nome' => 'Acre',
             'sigla' => 'AC',
         ],
-
         [
-            'id' => '2',
+            'id' => '27',
             'nome' => 'Alagoas',
             'sigla' => 'AL',
         ],
-
         [
-            'id' => '3',
-            'nome' => 'Amazonas',
-            'sigla' => 'AM',
-        ],
-
-        [
-            'id' => '4',
+            'id' => '16',
             'nome' => 'Amapá',
             'sigla' => 'AP',
         ],
-
         [
-            'id' => '5',
+            'id' => '13',
+            'nome' => 'Amazonas',
+            'sigla' => 'AM',
+        ],
+        [
+            'id' => '29',
             'nome' => 'Bahia',
             'sigla' => 'BA',
         ],
-
         [
-            'id' => '6',
+            'id' => '23',
             'nome' => 'Ceará',
             'sigla' => 'CE',
         ],
-
         [
-            'id' => '7',
+            'id' => '53',
             'nome' => 'Distrito Federal',
             'sigla' => 'DF',
         ],
-
         [
-            'id' => '8',
+            'id' => '32',
             'nome' => 'Espírito Santo',
             'sigla' => 'ES',
         ],
-
         [
-            'id' => '9',
+            'id' => '52',
             'nome' => 'Goiás',
             'sigla' => 'GO',
         ],
-
         [
-            'id' => '10',
+            'id' => '21',
             'nome' => 'Maranhão',
             'sigla' => 'MA',
         ],
-
         [
-            'id' => '11',
-            'nome' => 'Minas Gerais',
-            'sigla' => 'MG',
-        ],
-
-        [
-            'id' => '12',
-            'nome' => 'Mato Grosso do Sul',
-            'sigla' => 'MS',
-        ],
-
-        [
-            'id' => '13',
+            'id' => '51',
             'nome' => 'Mato Grosso',
             'sigla' => 'MT',
         ],
-
         [
-            'id' => '14',
+            'id' => '50',
+            'nome' => 'Mato Grosso do Sul',
+            'sigla' => 'MS',
+        ],
+        [
+            'id' => '31',
+            'nome' => 'Minas Gerais',
+            'sigla' => 'MG',
+        ],
+        [
+            'id' => '15',
             'nome' => 'Pará',
             'sigla' => 'PA',
         ],
-
         [
-            'id' => '15',
+            'id' => '25',
             'nome' => 'Paraíba',
             'sigla' => 'PB',
         ],
-
         [
-            'id' => '16',
-            'nome' => 'Pernambuco',
-            'sigla' => 'PE',
-        ],
-
-        [
-            'id' => '17',
-            'nome' => 'Piauí',
-            'sigla' => 'PI',
-        ],
-
-        [
-            'id' => '18',
+            'id' => '41',
             'nome' => 'Paraná',
             'sigla' => 'PR',
         ],
-
         [
-            'id' => '19',
-            'nome' => 'Rio de Janeiro',
-            'sigla' => 'RJ',
+            'id' => '26',
+            'nome' => 'Pernambuco',
+            'sigla' => 'PE',
         ],
-
         [
-            'id' => '20',
+            'id' => '22',
+            'nome' => 'Piauí',
+            'sigla' => 'PI',
+        ],
+        [
+            'id' => '24',
             'nome' => 'Rio Grande do Norte',
             'sigla' => 'RN',
         ],
-
         [
-            'id' => '21',
-            'nome' => 'Rondônia',
-            'sigla' => 'RO',
-        ],
-
-        [
-            'id' => '22',
-            'nome' => 'Roraima',
-            'sigla' => 'RR',
-        ],
-
-        [
-            'id' => '23',
+            'id' => '43',
             'nome' => 'Rio Grande do Sul',
             'sigla' => 'RS',
         ],
-
         [
-            'id' => '24',
+            'id' => '33',
+            'nome' => 'Rio de Janeiro',
+            'sigla' => 'RJ',
+        ],
+        [
+            'id' => '11',
+            'nome' => 'Rondônia',
+            'sigla' => 'RO',
+        ],
+        [
+            'id' => '14',
+            'nome' => 'Roraima',
+            'sigla' => 'RR',
+        ],
+        [
+            'id' => '42',
             'nome' => 'Santa Catarina',
             'sigla' => 'SC',
         ],
-
         [
-            'id' => '25',
-            'nome' => 'Sergipe',
-            'sigla' => 'SE',
-        ],
-
-        [
-            'id' => '26',
+            'id' => '35',
             'nome' => 'São Paulo',
             'sigla' => 'SP',
         ],
-
         [
-            'id' => '27',
+            'id' => '28',
+            'nome' => 'Sergipe',
+            'sigla' => 'SE',
+        ],
+        [
+            'id' => '17',
             'nome' => 'Tocantins',
             'sigla' => 'TO',
-        ],
-    ];
+        ],    ];
 
     /**
      * Run the database seeds.
