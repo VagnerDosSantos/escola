@@ -1,6 +1,5 @@
 <?php
 
-use App\Enums\Infraestruturas\DependenciaEscolar;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -15,10 +14,6 @@ use Inertia\Inertia;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('teste', function () {
-    // $teste = array_combine();
-    dd(DependenciaEscolar::toArray());
-});
 
 Route::get('/', function () {
     return Inertia::render('Welcome', [
