@@ -1,66 +1,249 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+## Requisitos &#128003;
+- **PHP:** 8.1.8
+- **Laravel:** 9.0
+- **Composer:** 2.2.6
+- **NodeJS:** 16
+- **Database:** MySQL
+- **Documentação:** Postman
+- **Línguagem:** O Código deve ser escrito em **PORTUGUÊS**, tendo suas ressalvas para funções a nível de escopo global que pode ser escrito em Inglês.
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## Links Úteis &#128519;
+- PHP: [PHP 8.1.8](https://windows.php.net/downloads/releases/php-8.1.8-nts-Win32-vs16-x64.zip)
 
-## About Laravel
+---
+# MÉTODOS HTTP
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+#### GET
+| Código                         | Descrição                                                                  |
+| :----------------------------- | :------------------------------------------------------------------------- |
+| :blush: `200 - OK`             | Somente se encontrar dos no banco                                          |
+| :rage: `401 - Unauthorized`    | Quando tentar realizar uma requisição sem estar autenticado                |
+| :confounded: `404 - Not Found` | Quando não for encontrado nenhum registro                                  |
+| :rage: `500 - Server Error`    | Quando acontecer algum erro inesperado. **(Não é necessário implementar)** |
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+#### POST
+| Código                                    | Descrição                                                                                 |
+| :---------------------------------------- | :---------------------------------------------------------------------------------------- |
+| :blush: `102 - Processing`                | Quando a requisição for **ASSÍNCRONA** e já tiver um processo em andamento                |
+| :confounded: `200 - OK`                   | Quando a requisição for concluída mas o registro **NÃO** for criado                       |
+| :blush: `201 - Created`                   | Quando a requisição for concluída e o registro **FOR** criado                             |
+| :blush: `202 - Accepted`                  | Quando a solicitação de uma requisição **ASSÍNCRONA** for concluída                       |
+| :rage: `400 - Bad Request`                | Quando tentar realizar uma requisição e ocorrer algum erro relacionado a regra de negócio |
+| :rage: `401 - Unauthorized`               | Quando tentar realizar uma requisição sem estar autenticado                               |
+| :confounded: `404 - Not Found`            | Quando não for encontrado nenhum registro para processar                                  |
+| :confounded: `422 - Unprocessable Entity` | Quando ocorrer algum erro por conta de falha na validação do Request                      |
+| :rage: `500 - Server Error`               | Quando acontecer algum erro inesperado. **(Não é necessário implementar)**                |
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+#### PUT
+| Código                                    | Descrição                                                                                 |
+| :---------------------------------------- | :---------------------------------------------------------------------------------------- |
+| :blush: `200 - OK`                        | Quando a requisição for concluída com sucesso                                             |
+| :rage: `400 - Bad Request`                | Quando tentar realizar uma requisição e ocorrer algum erro relacionado a regra de negócio |
+| :rage: `401 - Unauthorized`               | Quando tentar realizar uma requisição sem estar autenticado                               |
+| :confounded: `404 - Not Found`            | Quando não for encontrado nenhum registro para processar                                  |
+| :confounded: `422 - Unprocessable Entity` | Quando ocorrer algum erro por conta de falha na validação do Request                      |
+| :rage: `500 - Server Error`               | Quando acontecer algum erro inesperado. **(Não é necessário implementar)**                |
 
-## Learning Laravel
+#### DELETE
+| Código                                    | Descrição                                                                  |
+| :---------------------------------------- | :------------------------------------------------------------------------- |
+| :confounded: `200 - OK`                   | Quando a requisição for concluída mas o registro **NÃO** for deletado      |
+| :blush: `204 - No Content`                | Quando a requisição for concluída e o registro **FOR** deletado            |
+| :rage: `401 - Unauthorized`               | Quando tentar realizar uma requisição sem estar autenticado                |
+| :confounded: `404 - Not Found`            | Quando não for encontrado nenhum registro para processar                   |
+| :confounded: `422 - Unprocessable Entity` | Quando ocorrer algum erro por conta de falha na validação do Request       |
+| :rage: `500 - Server Error`               | Quando acontecer algum erro inesperado. **(Não é necessário implementar)** |
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+#### PATCH
+| Código                                    | Descrição                                                                  |
+| :---------------------------------------- | :------------------------------------------------------------------------- |
+| :confounded: `200 - OK`                   | Quando a requisição for concluída mas o registro **NÃO** for editado       |
+| :blush: `204 - No Content`                | Quando a requisição for concluída e o registro **FOR** editado             |
+| :rage: `401 - Unauthorized`               | Quando tentar realizar uma requisição sem estar autenticado                |
+| :confounded: `404 - Not Found`            | Quando não for encontrado nenhum registro para processar                   |
+| :confounded: `422 - Unprocessable Entity` | Quando ocorrer algum erro por conta de falha na validação do Request       |
+| :rage: `500 - Server Error`               | Quando acontecer algum erro inesperado. **(Não é necessário implementar)** |
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+---
+## Respostas
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### GET &#128064;
+<details>
+  <summary>Clique para expandir!</summary>
 
-## Laravel Sponsors
+- 200 OK
+```yaml
+{
+    "mensagem": "Registros encontrados",
+    "dados": [
+        {
+            "MunId": 1,
+            "MunNome": "Nome do registro"
+        }
+    ]
+}
+```
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+- 404 Not Found
+```yaml
+{
+    "mensagem": "Registro não encontrado",
+    "dados": []
+}
+```
+</details>
 
-### Premium Partners
+### POST &#128064;
+<details>
+  <summary>Clique para expandir!</summary>
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+  - 102 *Processing*
+  ```yaml
+  {
+      "mensagem": "Requisição em processamento"
+  }
+  ```
 
-## Contributing
+  - 200 *OK*
+  ```yaml
+  {
+      "mensagem": "O Registro não pôde ser criado"
+  }
+  ```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+  - 201 *Created*
+  ```yaml
+  {
+      "mensagem": "O Registro criado",
+      "dados": [
+          {
+              "MunId": 1,
+              "MunNome": "Nome do registro"
+          }
+      ]
+  }
+  ```
 
-## Code of Conduct
+  - 202 *Accepted*
+  ```yaml
+  {
+      "mensagem": "Requisição recebida e está em andamento"
+  }
+  ```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+  - 404 *Not Found*
+  ```yaml
+  {
+      "mensagem": "Registro não encontrado"
+  }
+  ```
+</details>
 
-## Security Vulnerabilities
+### PUT &#128064;
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+<details>
+  <summary>Clique para expandir!</summary>
 
-## License
+- 200 *OK*
+```yaml
+{
+    "mensagem": "Registro editado com sucesso",
+    // Dados dos *REGISTROS* atualizados
+    "dados": [
+        {
+            "MunId": 1,
+            "MunNome": "Nome do registro"
+        }
+    ]
+}
+```
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+- 404 Not Found
+```yaml
+{
+    "mensagem": "Registro não encontrado",
+}
+```
+
+</details>
+
+### DELETE &#128064;
+
+<details>
+
+<summary>Clique para expandir!</summary>
+
+- 200 *OK*
+```yaml
+{
+    "mensagem": "Ocorreu um erro ao deletar o registro",
+}
+```
+
+- 204 *No Content*
+  
+```yaml
+ // Não informar o body da response
+```
+
+- 404 *Not Found*
+```yaml
+{
+    "mensagem": "Registro não encontrado"
+}
+```
+</details>
+
+### PATCH &#128064;
+<details>
+
+<summary>Clique para expandir!</summary>
+
+- 200 *OK*
+```yaml
+{
+    "mensagem": "Ocorreu um erro ao atualizar a informação",
+}
+```
+
+- 204 *No Content*
+  
+```yaml
+ // Não informar o body da response
+```
+
+- 404 *Not Found*
+```yaml
+{
+    "mensagem": "Registro não encontrado"
+}
+```
+</details>
+
+
+### GET | POST | PUT | DELETE | PATCH &#128064;
+<details>
+
+<summary>Clique para expandir!</summary>
+
+- 400 *Bad Request* ( Não utilizado no método **GET** )
+```yaml
+{
+    "mensagem": "Ocorreu um erro ao processar a requisição",
+}
+```
+
+- 401 *Unauthorized*
+```yaml
+{
+   "message": "Unauthorized"
+}
+```
+
+ - 500 *Server Error*
+```yaml
+{
+   "message": "Unauthorized"
+}
+```
+</details>
