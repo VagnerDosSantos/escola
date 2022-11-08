@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers\Escola;
 
+use App\Enums\Escola\Situacao;
 use App\Http\Controllers\Controller;
 use App\Utils\Exception;
 use App\Utils\ValidateForm;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rules\Enum;
 
 class EscolaController extends Controller
 {
@@ -15,7 +17,7 @@ class EscolaController extends Controller
             $validated = ValidateForm::validate($request, [
                 'codigo_inep' => 'required|digits:8|numeric',
                 'nome' => 'required|string|min:4|max:100',
-                'situacao' => '',
+                'situacao' => new Enum(Situacao::class),
                 'inicio_ano_letivo' => '',
                 'termino_ano_letivo' => '',
                 'cep' => '',

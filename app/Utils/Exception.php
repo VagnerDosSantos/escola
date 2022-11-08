@@ -9,15 +9,21 @@ final class Exception
 {
     public static function handle(\Throwable $th): JsonResponse
     {
+        $code = $th->getCode();
+
+        if($th->getCode() == 0) {
+            $code = 500;    
+        }
+
         if ($th instanceof UnprocessableEntityException) {
             return response()->json([
                 'mensagem' => 'Parâmetros informados incorretamente.',
                 'erros' => json_decode($th->getMessage()),
-            ], $th->getCode());
+            ], $code);
         }
 
         return response()->json([
             'mensagem' => $th->getMessage(),
-        ], $th->getCode());
+        ], $code);
     }
 }
