@@ -15,10 +15,7 @@ class ValidateForm
         $validator = Validator::make($request->all(), $rules, self::messages());
 
         if ($validator->fails()) {
-            throw new UnprocessableEntityException(
-                $validator->errors()->toJson(),
-                HttpStatus::UNPROCESSABLE_ENTITY->value
-            );
+            throw new UnprocessableEntityException($validator->errors()->toJson(), HttpStatus::UNPROCESSABLE_ENTITY->value);
         }
 
         return $validator->validated();

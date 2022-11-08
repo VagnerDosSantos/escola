@@ -11,8 +11,8 @@ final class Exception
     {
         $code = $th->getCode();
 
-        if($th->getCode() == 0) {
-            $code = 500;    
+        if (0 == $th->getCode()) {
+            $code = 500;
         }
 
         if ($th instanceof UnprocessableEntityException) {

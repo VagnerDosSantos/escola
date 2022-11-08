@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use App\Models\FormacaoSuperior\CursoPosGraduacao;
 use Illuminate\Database\Seeder;
 
@@ -62,8 +61,8 @@ class CursosPosGraduacaoSeeder extends Seeder
         [
             'id' => '11',
             'cod_geral' => 99,
-            'area_especifica_id' => 'Programas básicos'
-        ]
+            'area_especifica_id' => 'Programas básicos',
+        ],
     ];
 
     /**
