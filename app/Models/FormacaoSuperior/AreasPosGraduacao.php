@@ -4,7 +4,7 @@ namespace App\Models\FormacaoSuperior;
 
 use Illuminate\Database\Eloquent\Model;
 
-class CursoPosGraduacao extends Model
+class AreasPosGraduacao extends Model
 {
-    protected $table = 'cursos_pos_graduacao';
+    protected $table = 'areas_pos_graduacao';
 }

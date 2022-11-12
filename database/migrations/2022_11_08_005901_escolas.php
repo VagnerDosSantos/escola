@@ -12,9 +12,9 @@ return new class() extends Migration {
      */
     public function up()
     {
-        Schema::create('dados_escola', function (Blueprint $table) {
+        Schema::create('escolas', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('escola_id')->constrained('escolas');
+            $table->string('codigo_inep', 10)->unique();
             $table->string('nome', 100);
             $table->tinyInteger('situacao')->default(1);
             $table->date('inicio_ano_letivo')->nullable();
@@ -63,6 +63,6 @@ return new class() extends Migration {
      */
     public function down()
     {
-        Schema::dropDatabaseIfExists('dados_escola');
+        Schema::dropIfExists('escolas');
     }
 };

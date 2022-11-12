@@ -19,7 +19,7 @@ class EscolaController extends Controller
                 'codigo_inep' => 'required|digits:8|numeric',
                 'nome' => 'required|string|min:4|max:100|regex:/^.+@.+$/i',
                 'situacao' => new Enum(Situacao::class),
-                'inicio_ano_letivo' => '[required_if:situacao=1, '.new validaAnoBissexto.']|date_format:d/m/Y|',
+                'inicio_ano_letivo' => '[required_if:situacao=1, '.new validaAnoBissexto.']|date_format:d/m/Y|'(),
                 'termino_ano_letivo' => 'required_if:situacao=1|date_format:d/m/Y',
                 'cep' => 'required|min:8|max:8',
                 'localizacao' => 'required|numeric',

@@ -12,10 +12,9 @@ return new class() extends Migration {
      */
     public function up()
     {
-        Schema::create('cursos_pos_graduacao', function (Blueprint $table) {
-            $table->string('id', 10)->primary();
-            $table->integer('cod_geral');
-            $table->string('area_especifica_id', 100);
+        Schema::create('areas_pos_graduacao', function (Blueprint $table) {
+            $table->integer('id')->primary();
+            $table->string('nome');
         });
     }
 
@@ -26,6 +25,6 @@ return new class() extends Migration {
      */
     public function down()
     {
-        Schema::dropIfExists('cursos_pos_graduacao');
+        Schema::dropIfExists('areas_pos_graduacao');
     }
 };

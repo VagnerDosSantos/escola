@@ -16,7 +16,7 @@ return new class() extends Migration {
             $table->id();
             $table->string('nome');
             $table->string('abreviacao')->nullable();
-            $table->integer('censo_id')->nullable();
+            $table->integer('censo_id')->index();
             $table->boolean('permite_excluir')->default(false);
 
             $table->foreignId('categoria_id')
