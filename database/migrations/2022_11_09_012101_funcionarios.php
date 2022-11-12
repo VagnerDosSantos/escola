@@ -27,7 +27,7 @@ return new class() extends Migration {
             $table->tinyInteger('sexo');
             $table->tinyInteger('cor_raca');
             $table->tinyInteger('nacionalidade');
-            $table->integer('pais_id');
+            $table->integer('pais_nacionalidade_id');
             $table->integer('pais_residencia_id');
             $table->string('municipio_nascimento_id', 10)->nullable();
             $table->string('municipio_residencia_id', 10)->nullable();
@@ -71,9 +71,10 @@ return new class() extends Migration {
             $table->tinyInteger('tipo_pos_graduacao_6')->nullable();
             $table->integer('area_pos_graduacao_6')->nullable();
             $table->year('ano_conclusao_pos_graduacao_6')->nullable();
+            $table->boolean('possui_pos_graduacao')->nullable();
             $table->string('formacao_continuada')->nullable();
 
-            $table->foreign('pais_id')->references('id')->on('paises');
+            $table->foreign('pais_nacionalidade_id')->references('id')->on('paises');
             $table->foreign('pais_residencia_id')->references('id')->on('paises');
             $table->foreign('municipio_nascimento_id')->references('id')->on('municipios');
             $table->foreign('municipio_residencia_id')->references('id')->on('municipios');

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Escola\EscolaController;
+use App\Http\Controllers\Escola\FuncionarioController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -17,6 +18,10 @@ use Illuminate\Support\Facades\Route;
 
 Route::prefix('escola')->group(function () {
     Route::post('/', [EscolaController::class, 'salvar']);
+});
+
+Route::prefix('funcionario')->group(function () {
+    Route::post('/', [FuncionarioController::class, 'salvar']);
 });
 
 // Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
