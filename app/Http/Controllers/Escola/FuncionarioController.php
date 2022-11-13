@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Escola;
 use App\Enums\HttpStatus;
 use App\Enums\Nacionalidade;
 use App\Http\Controllers\Controller;
+use App\Models\Funcionario;
 use App\Repositories\Funcionario\FuncionarioRepository;
 use App\Rules\AcceptedValueWhen;
 use App\Rules\Cpf;
@@ -58,7 +59,7 @@ class FuncionarioController extends Controller
         ], HttpStatus::OK->value);
     }
 
-    public function excluir(Request $request, int $id)
+    public function excluir(int $id)
     {
         try {
             $funcionario = $this->funcionario->getFuncionario($id);
@@ -86,7 +87,7 @@ class FuncionarioController extends Controller
         $validaAnoConclusao = [
             'date_format:Y',
             'gte:1940',
-            'lte:'.date('Y'),
+            'lte:' . date('Y'),
         ];
 
         $validaTipoPosGraduacao = [
