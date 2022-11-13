@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\Escola;
 
+use App\Enums\HttpStatus;
 use App\Enums\Nacionalidade;
 use App\Http\Controllers\Controller;
+use App\Repositories\Funcionario\FuncionarioRepository;
 use App\Rules\AcceptedValueWhen;
 use App\Rules\Cpf;
 use App\Rules\FullName;
@@ -19,15 +21,41 @@ use Illuminate\Validation\Rules\RequiredIf;
 
 class FuncionarioController extends Controller
 {
+    private FuncionarioRepository $funcionario;
+
+    public function __construct(FuncionarioRepository $funcionario)
+    {
+        $this->funcionario = $funcionario;
+    }
+
     public function salvar(Request $request)
     {
         try {
             $validated = $this->validarCadastro($request);
+            $funcionario = $this->funcionario->salvar($validated);
         } catch (\Throwable $th) {
             return Exception::handle($th);
         }
 
-        return $validated;
+        return response()->json([
+            'mensagem' => 'Funcionário cadastrado com sucesso.',
+            'dados' => $funcionario->toArray(),
+        ], HttpStatus::CREATED->value);
+    }
+
+    public function editar(Request $request, int $id)
+    {
+        try {
+            $validated = $this->validarCadastro($request);
+            $funcionario = $this->funcionario->editar($id, $validated);
+        } catch (\Throwable $th) {
+            return Exception::handle($th);
+        }
+
+        return response()->json([
+            'mensagem' => 'Funcionário editado com sucesso.',
+            'dados' => $funcionario->toArray(),
+        ], HttpStatus::OK->value);
     }
 
     private function validarCadastro(Request $request)
