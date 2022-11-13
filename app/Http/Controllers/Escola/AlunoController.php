@@ -100,6 +100,18 @@ class AlunoController extends Controller
         return response()->noContent();
     }
 
+    public function restaurar(int $id)
+    {
+        try {
+            $aluno = $this->aluno->getAluno($id, true);
+            $this->aluno->restaurar($aluno);
+        } catch (\Throwable $th) {
+            return Exception::handle($th);
+        }
+
+        return response()->noContent();
+    }
+
     private function validarFormulario(Request $request)
     {
         $nacionalidadeBrasileira = in_array($request->nacionalidade, [

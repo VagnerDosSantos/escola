@@ -14,9 +14,15 @@ class AlunoRepository
     ) {
     }
 
-    public function getAluno(int $id): Aluno
+    public function getAluno(int $id, bool $withTrashed = false): Aluno
     {
-        $aluno = $this->aluno->bySchool()->find($id);
+        $aluno = $this->aluno->bySchool();
+
+        if ($withTrashed) {
+            $aluno = $aluno->withTrashed();
+        }
+
+        $aluno = $aluno->find($id);
 
         if (!$aluno) {
             throw new \Exception('Aluno não encontrado', HttpStatus::NOT_FOUND->value);
@@ -47,7 +53,7 @@ class AlunoRepository
             ->latest()
             ->get(['ano_letivo', 'codigo_sistema', 'deleted_at']);
 
-        if (!empty($aluno->where('ano_letivo', $dados['ano_letivo'])->first()->deleted_at)) {
+        if (!empty($aluno->where('ano_letivo', $dados['ano_letivo'])->first()->trashed())) {
             throw new \Exception("Foi encontrado um aluno excluído com o mesmo CPF, código INEP ou certidão de nascimento. Por favor, verifique os dados e tente novamente ou reative o cadastro do aluno.", HttpStatus::BAD_REQUEST->value);
         }
 
@@ -61,7 +67,7 @@ class AlunoRepository
         return $this->aluno->create($dados);
     }
 
-    public function editar(Aluno $aluno, array $dados)
+    public function editar(Aluno $aluno, array $dados): Aluno
     {
         $aluno->update($dados);
 
@@ -71,5 +77,10 @@ class AlunoRepository
     public function excluir(Aluno $aluno): void
     {
         $aluno->delete();
+    }
+
+    public function restaurar(Aluno $aluno): void
+    {
+        $aluno->restore();
     }
 }

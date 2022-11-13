@@ -71,7 +71,7 @@ class FuncionarioRepository
         $funcionario->delete();
     }
 
-    public function recuperar(Funcionario $funcionario): void
+    public function restaurar(Funcionario $funcionario): void
     {
         $funcionario->restore();
     }

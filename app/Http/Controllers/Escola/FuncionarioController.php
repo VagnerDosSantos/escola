@@ -103,11 +103,11 @@ class FuncionarioController extends Controller
         return response()->noContent();
     }
 
-    public function recuperar(int $id)
+    public function restaurar(int $id)
     {
         try {
             $funcionario = $this->funcionario->getFuncionario($id, true);
-            $this->funcionario->recuperar($funcionario);
+            $this->funcionario->restaurar($funcionario);
         } catch (\Throwable $th) {
             return Exception::handle($th);
         }
