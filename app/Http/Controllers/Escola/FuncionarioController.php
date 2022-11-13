@@ -92,7 +92,6 @@ class FuncionarioController extends Controller
         // Realizar validação do ID da escola existente na base de dados
         return ValidateForm::validate($request, [
             'escola_id' => 'required|integer',
-            'codigo_sistema' => 'nullable|string|max:20',
             'codigo_inep' => 'nullable|numeric|max:12',
             'cpf' => ['required', 'numeric', new Cpf()],
             'nome' => 'required|string|max:100',
