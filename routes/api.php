@@ -22,6 +22,7 @@ Route::prefix('escola')->group(function () {
 
 Route::prefix('funcionario')->group(function () {
     Route::post('/', [FuncionarioController::class, 'salvar']);
+    Route::put('/{id}', [FuncionarioController::class, 'editar']);
 });
 
 // Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
