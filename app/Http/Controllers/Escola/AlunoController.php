@@ -38,6 +38,18 @@ class AlunoController extends Controller
         ]);
     }
 
+    public function excluir(int $id)
+    {
+        try {
+            $aluno = $this->aluno->getAluno($id);
+            $this->aluno->excluir($aluno);
+        } catch (\Throwable $th) {
+            return Exception::handle($th);
+        }
+
+        return response()->noContent();
+    }
+
     private function validarFormulario(Request $request)
     {
         $nacionalidadeBrasileira = in_array($request->nacionalidade, [

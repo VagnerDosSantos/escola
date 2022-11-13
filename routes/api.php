@@ -32,6 +32,7 @@ Route::prefix('funcionario')->group(function () {
 
 Route::prefix('aluno')->group(function () {
     Route::post('/', [AlunoController::class, 'salvar']);
+    Route::delete('/{id}', [AlunoController::class, 'excluir']);
 });
 
 // Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
