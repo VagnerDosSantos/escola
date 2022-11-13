@@ -11,7 +11,7 @@ class Aluno extends Model
     use HasFactory;
     use SoftDeletes;
 
-    protected $guarded = ['ano_letivo', 'codigo_sistema', 'escola_id'];
+    protected $guarded = [];
     protected $casts = [
         'deficiencia_altas_habilidades_autismo' => 'array',
         'recursos_sala_aula' => 'array',

@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Enums\HttpStatus;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Auth\LoginRequest;
-use App\Providers\RouteServiceProvider;
+use App\Models\User;
+use App\Utils\Exception;
+use App\Utils\ValidateForm;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -30,13 +32,34 @@ class AuthenticatedSessionController extends Controller
      *
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(LoginRequest $request)
+    public function store(Request $request)
     {
-        $request->authenticate();
+        try {
+            $validated = ValidateForm::validate($request, [
+                'username' => 'required|string',
+                'password' => 'required|string',
+            ]);
 
-        $request->session()->regenerate();
+            if (!Auth::attempt($validated)) {
+                throw new Exception('Usuário ou senha inválidos', HttpStatus::UNAUTHORIZED->value);
+            }
 
-        return redirect()->intended(RouteServiceProvider::HOME);
+            /**
+             * @var User $user
+             */
+            $user = Auth::user();
+            $token = $user->createToken();
+        } catch (\Throwable $th) {
+            return Exception::handle($th);
+        }
+
+        return response()->json([
+            'mensagem' => 'Login realizado com sucesso',
+            'dados' => [
+                'token' => $token->plainTextToken,
+                'user' => $user
+            ]
+        ]);
     }
 
     /**

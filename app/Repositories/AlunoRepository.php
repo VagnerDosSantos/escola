@@ -53,7 +53,7 @@ class AlunoRepository
             ->latest()
             ->get(['ano_letivo', 'codigo_sistema', 'deleted_at']);
 
-        if (!empty($aluno->where('ano_letivo', $dados['ano_letivo'])->first()->trashed())) {
+        if (!empty($aluno->where('ano_letivo', $dados['ano_letivo'])->first()?->trashed())) {
             throw new \Exception("Foi encontrado um aluno excluído com o mesmo CPF, código INEP ou certidão de nascimento. Por favor, verifique os dados e tente novamente ou reative o cadastro do aluno.", HttpStatus::BAD_REQUEST->value);
         }
 
@@ -62,6 +62,7 @@ class AlunoRepository
         }
 
         $aluno = $aluno->first();
+
         $dados['codigo_sistema'] = $aluno?->codigo_sistema ?? Utils::generateUniqueId();
 
         return $this->aluno->create($dados);
@@ -69,6 +70,8 @@ class AlunoRepository
 
     public function editar(Aluno $aluno, array $dados): Aluno
     {
+        $dados['ano_letivo'] = $aluno->ano_letivo;
+
         $aluno->update($dados);
 
         return $aluno;

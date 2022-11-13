@@ -2,10 +2,10 @@
 
 namespace App\Utils;
 
+use App\Enums\HttpStatus;
 use App\Exceptions\UnprocessableEntityException;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Support\Facades\Log;
 
 final class Exception
 {
@@ -25,8 +25,15 @@ final class Exception
         }
 
         if ($th instanceof QueryException) {
-            Log::error($th->getMessage());
-            abort(500);
+            $mensagem = "Ocorreu um erro interno do servidor. Por favor, tente novamente mais tarde.";
+
+            if (env("APP_DEBUG")) {
+                $mensagem = $th->getMessage();
+            }
+
+            abort(response()->json([
+                'mensagem' => $mensagem,
+            ], HttpStatus::SERVER_ERROR->value));
         }
 
         return response()->json([
