@@ -24,6 +24,7 @@ Route::prefix('funcionario')->group(function () {
     Route::post('/', [FuncionarioController::class, 'salvar']);
     Route::put('/{id}', [FuncionarioController::class, 'editar']);
     Route::delete('/{id}', [FuncionarioController::class, 'excluir']);
+    Route::patch('/{id}', [FuncionarioController::class, 'recuperar']);
 });
 
 // Route::middleware('auth:sanctum')->get('/user', function (Request $request) {

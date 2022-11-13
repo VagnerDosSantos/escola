@@ -26,6 +26,6 @@ abstract class Model extends EloquentModel implements Auditable
 
     public function scopeBySchool($query)
     {
-        $query->where('escola_id', '=', 2);
+        $query->where('escola_id', '=', 1);
     }
 }

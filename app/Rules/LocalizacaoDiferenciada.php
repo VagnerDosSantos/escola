@@ -23,7 +23,7 @@ class LocalizacaoDiferenciada implements InvokableRule
      */
     public function __invoke($attribute, $value, $fail)
     {
-        if (1 == $this->zonaLocalizacao && 1 == $value) {
+        if ($this->zonaLocalizacao == 1 && $value == 1) {
             $fail('O campo Localização diferenciada não pode ser preenchido com 1 (Área de assentamento) quando o campo "Localização/ Zona de residência" for preenchido com 1 (Urbana).');
         }
     }
