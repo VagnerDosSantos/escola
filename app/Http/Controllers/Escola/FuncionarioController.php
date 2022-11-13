@@ -28,6 +28,22 @@ class FuncionarioController extends Controller
         $this->funcionario = $funcionario;
     }
 
+    public function getFuncionario(int $id)
+    {
+        try {
+            $funcionario = $this->funcionario->getFuncionario($id);
+        } catch (\Throwable $th) {
+            return Exception::handle($th);
+        }
+
+        return response()->json([
+            'mensagem' => 'Funcionário encontrado com sucesso.',
+            'dados' => [
+                $funcionario->toArray()
+            ]
+        ]);
+    }
+
     public function salvar(Request $request)
     {
         try {

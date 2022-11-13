@@ -21,6 +21,8 @@ Route::prefix('escola')->group(function () {
 });
 
 Route::prefix('funcionario')->group(function () {
+    Route::get('/', [FuncionarioController::class, 'listar']);
+    Route::get('/{id}', [FuncionarioController::class, 'getFuncionario']);
     Route::post('/', [FuncionarioController::class, 'salvar']);
     Route::put('/{id}', [FuncionarioController::class, 'editar']);
     Route::delete('/{id}', [FuncionarioController::class, 'excluir']);
