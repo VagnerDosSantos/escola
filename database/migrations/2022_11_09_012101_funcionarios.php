@@ -38,6 +38,7 @@ return new class () extends Migration {
             $table->string('numero', 10)->nullable();
             $table->string('complemento', 100)->nullable();
             $table->string('bairro', 100)->nullable();
+            $table->boolean('possui_deficiencia');
             $table->string('deficiencia_altas_habilidades_autismo')->nullable();
             $table->tinyInteger('escolaridade_concluida')->nullable();
             $table->tinyInteger('ensino_medio_cursado')->nullable();
