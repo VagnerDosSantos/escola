@@ -44,6 +44,20 @@ class FuncionarioController extends Controller
         ]);
     }
 
+    public function listar(Request $request)
+    {
+        try {
+            $funcionarios = $this->funcionario->listar();
+        } catch (\Throwable $th) {
+            return Exception::handle($th);
+        }
+
+        return response()->json([
+            'mensagem' => 'Funcionários encontrados com sucesso.',
+            'dados' => $funcionarios->toArray()
+        ]);
+    }
+
     public function salvar(Request $request)
     {
         try {
@@ -55,7 +69,9 @@ class FuncionarioController extends Controller
 
         return response()->json([
             'mensagem' => 'Funcionário cadastrado com sucesso.',
-            'dados' => $funcionario->toArray(),
+            'dados' => [
+                $funcionario->toArray()
+            ],
         ], HttpStatus::CREATED->value);
     }
 
@@ -71,7 +87,9 @@ class FuncionarioController extends Controller
 
         return response()->json([
             'mensagem' => 'Funcionário editado com sucesso.',
-            'dados' => $funcionario->toArray(),
+            'dados' => [
+                $funcionario->toArray()
+            ],
         ], HttpStatus::OK->value);
     }
 
