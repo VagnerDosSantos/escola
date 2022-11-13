@@ -74,6 +74,12 @@ return new class() extends Migration {
             $table->boolean('possui_pos_graduacao')->nullable();
             $table->string('formacao_continuada')->nullable();
 
+            $table->string('created_by', 100);
+            $table->string('updated_by', 100)->nullable();
+            $table->string('deleted_by', 100)->nullable();
+            $table->timestamps();
+            $table->softDeletes();
+
             $table->foreign('pais_nacionalidade_id')->references('id')->on('paises');
             $table->foreign('pais_residencia_id')->references('id')->on('paises');
             $table->foreign('municipio_nascimento_id')->references('id')->on('municipios');

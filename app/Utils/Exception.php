@@ -3,7 +3,9 @@
 namespace App\Utils;
 
 use App\Exceptions\UnprocessableEntityException;
+use Illuminate\Database\QueryException;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Facades\Log;
 
 final class Exception
 {
@@ -20,6 +22,11 @@ final class Exception
                 'mensagem' => 'Parâmetros informados incorretamente.',
                 'erros' => json_decode($th->getMessage()),
             ], $code);
+        }
+
+        if ($th instanceof QueryException) {
+            Log::error($th->getMessage());
+            abort(500);
         }
 
         return response()->json([
