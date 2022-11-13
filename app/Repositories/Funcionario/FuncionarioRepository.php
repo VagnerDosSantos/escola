@@ -14,9 +14,15 @@ class FuncionarioRepository
     ) {
     }
 
-    public function getFuncionario(string $id): Funcionario
+    public function getFuncionario(int $id, bool $withTrashed = false): Funcionario
     {
-        $funcionario = $this->model->withTrashed()->find($id);
+        $funcionario = $this->model->bySchool();
+
+        if ($withTrashed) {
+            $funcionario = $funcionario->withTrashed();
+        }
+
+        $funcionario = $funcionario->find($id);
 
         if (!$funcionario) {
             throw new \Exception('Funcionário não encontrado', HttpStatus::NOT_FOUND->value);
@@ -28,6 +34,7 @@ class FuncionarioRepository
     public function salvar(array $data): Funcionario
     {
         $funcionario = $this->model
+            ->withTrashed()
             ->where('cpf', $data['cpf'])
             ->get(['id', 'codigo_sistema', 'escola_id', 'cpf']);
 
@@ -38,26 +45,23 @@ class FuncionarioRepository
         $funcionario = $funcionario->first();
         $data['codigo_sistema'] = $funcionario->codigo_sistema ?? Utils::generateUniqueId();
 
-        DB::statement('SET FOREIGN_KEY_CHECKS=0;');
-
         return $this->model->create($data);
     }
 
-    public function editar(int $id, array $data): Funcionario
+    public function editar(Funcionario $funcionario, array $data): Funcionario
     {
-        $funcionario = $this->model->bySchool()->find($id);
-
-        if (!$funcionario) {
-            throw new \Exception('Funcionário não encontrado.', HttpStatus::NOT_FOUND->value);
-        }
-
         $funcionario->update($data);
 
         return $funcionario;
     }
 
-    public function excluir(Funcionario $funcionario)
+    public function excluir(Funcionario $funcionario): void
     {
         $funcionario->delete();
+    }
+
+    public function recuperar(Funcionario $funcionario): void
+    {
+        $funcionario->restore();
     }
 }
