@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Escola;
 
+use App\Enums\HttpStatus;
 use App\Enums\Nacionalidade;
 use App\Http\Controllers\Controller;
 use App\Repositories\AlunoRepository;
@@ -21,6 +22,36 @@ class AlunoController extends Controller
     ) {
     }
 
+    public function getAluno(int $id)
+    {
+        try {
+            $aluno = $this->aluno->getAluno($id);
+        } catch (\Throwable $th) {
+            return Exception::handle($th);
+        }
+
+        return response()->json([
+            'mensagem' => 'Aluno encontrado com sucesso.',
+            'dados' => [
+                $aluno->toArray()
+            ]
+        ]);
+    }
+
+    public function listar(Request $request)
+    {
+        try {
+            $alunos = $this->aluno->listar();
+        } catch (\Throwable $th) {
+            return Exception::handle($th);
+        }
+
+        return response()->json([
+            'mensagem' => 'Alunos encontrados com sucesso.',
+            'dados' => $alunos->toArray()
+        ]);
+    }
+
     public function salvar(Request $request)
     {
         try {
@@ -35,7 +66,50 @@ class AlunoController extends Controller
             'dados' => [
                 $aluno->toArray()
             ]
+        ], HttpStatus::CREATED->value);
+    }
+
+    public function editar(Request $request, int $id)
+    {
+        try {
+            $validated = $this->validarFormulario($request);
+
+            $aluno = $this->aluno->getAluno($id);
+            $aluno = $this->aluno->editar($aluno, $validated);
+        } catch (\Throwable $th) {
+            return Exception::handle($th);
+        }
+
+        return response()->json([
+            'mensagem' => 'Aluno editado com sucesso.',
+            'dados' => [
+                $aluno->toArray()
+            ]
         ]);
+    }
+
+    public function excluir(int $id)
+    {
+        try {
+            $aluno = $this->aluno->getAluno($id);
+            $this->aluno->excluir($aluno);
+        } catch (\Throwable $th) {
+            return Exception::handle($th);
+        }
+
+        return response()->noContent();
+    }
+
+    public function restaurar(int $id)
+    {
+        try {
+            $aluno = $this->aluno->getAluno($id, true);
+            $this->aluno->restaurar($aluno);
+        } catch (\Throwable $th) {
+            return Exception::handle($th);
+        }
+
+        return response()->noContent();
     }
 
     private function validarFormulario(Request $request)

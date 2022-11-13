@@ -27,11 +27,16 @@ Route::prefix('funcionario')->group(function () {
     Route::post('/', [FuncionarioController::class, 'salvar']);
     Route::put('/{id}', [FuncionarioController::class, 'editar']);
     Route::delete('/{id}', [FuncionarioController::class, 'excluir']);
-    Route::patch('/{id}', [FuncionarioController::class, 'recuperar']);
+    Route::patch('/{id}', [FuncionarioController::class, 'restaurar']);
 });
 
 Route::prefix('aluno')->group(function () {
+    Route::get('/', [AlunoController::class, 'listar']);
+    Route::get('/{id}', [AlunoController::class, 'getAluno']);
     Route::post('/', [AlunoController::class, 'salvar']);
+    Route::put('/{id}', [AlunoController::class, 'editar']);
+    Route::delete('/{id}', [AlunoController::class, 'excluir']);
+    Route::patch('/{id}', [AlunoController::class, 'restaurar']);
 });
 
 // Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
