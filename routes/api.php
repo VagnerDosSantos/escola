@@ -31,8 +31,12 @@ Route::prefix('funcionario')->group(function () {
 });
 
 Route::prefix('aluno')->group(function () {
+    Route::get('/', [AlunoController::class, 'listar']);
+    Route::get('/{id}', [AlunoController::class, 'getAluno']);
     Route::post('/', [AlunoController::class, 'salvar']);
+    Route::put('/{id}', [AlunoController::class, 'editar']);
     Route::delete('/{id}', [AlunoController::class, 'excluir']);
+    Route::patch('/{id}', [AlunoController::class, 'recuperar']);
 });
 
 // Route::middleware('auth:sanctum')->get('/user', function (Request $request) {

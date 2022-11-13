@@ -21,6 +21,22 @@ class AlunoController extends Controller
     ) {
     }
 
+    public function getAluno(int $id)
+    {
+        try {
+            $aluno = $this->aluno->getAluno($id);
+        } catch (\Throwable $th) {
+            return Exception::handle($th);
+        }
+
+        return response()->json([
+            'mensagem' => 'Aluno encontrado com sucesso.',
+            'dados' => [
+                $aluno->toArray()
+            ]
+        ]);
+    }
+
     public function salvar(Request $request)
     {
         try {
