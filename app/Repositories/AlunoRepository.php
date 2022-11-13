@@ -5,7 +5,6 @@ namespace App\Repositories;
 use App\Enums\HttpStatus;
 use App\Models\Aluno;
 use App\Utils\Utils;
-use Illuminate\Support\Facades\DB;
 
 class AlunoRepository
 {
@@ -33,16 +32,20 @@ class AlunoRepository
             ->where('cpf', '=', $dados['cpf'] ?? 0)
             ->orWhere('codigo_inep', '=', $dados['codigo_inep'] ?? 0)
             ->orWhere('certidao_nascimento', '=', $dados['certidao_nascimento'] ?? 0)
-            ->get();
+            ->latest()
+            ->get(['ano_letivo', 'codigo_sistema', 'deleted_at']);
 
-        if ($aluno->where('ano_letivo', $dados['ano_letivo'])->count() > 0) {
+        if (!empty($aluno->where('ano_letivo', $dados['ano_letivo'])->first()->deleted_at)) {
+            throw new \Exception("Foi encontrado um aluno excluído com o mesmo CPF, código INEP ou certidão de nascimento. Por favor, verifique os dados e tente novamente ou reative o cadastro do aluno.", HttpStatus::BAD_REQUEST->value);
+        }
+
+        if ($aluno->where('ano_letivo', $dados['ano_letivo'])->first() != null) {
             throw new \Exception('Aluno já cadastrado para este ano letivo.', HttpStatus::BAD_REQUEST->value);
         }
 
         $aluno = $aluno->first();
         $dados['codigo_sistema'] = $aluno?->codigo_sistema ?? Utils::generateUniqueId();
 
-        DB::statement('SET FOREIGN_KEY_CHECKS=0;');
         return $this->aluno->create($dados);
     }
 

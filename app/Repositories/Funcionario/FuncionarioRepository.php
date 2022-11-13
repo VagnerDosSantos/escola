@@ -6,7 +6,6 @@ use App\Enums\HttpStatus;
 use App\Models\Funcionario;
 use App\Utils\Utils;
 use Illuminate\Database\Eloquent\Collection;
-use Illuminate\Support\Facades\DB;
 
 class FuncionarioRepository
 {
