@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Escola;
 
+use App\Enums\HttpStatus;
 use App\Enums\Nacionalidade;
 use App\Http\Controllers\Controller;
 use App\Repositories\AlunoRepository;
@@ -62,6 +63,25 @@ class AlunoController extends Controller
 
         return response()->json([
             'mensagem' => 'Aluno salvo com sucesso!',
+            'dados' => [
+                $aluno->toArray()
+            ]
+        ], HttpStatus::CREATED->value);
+    }
+
+    public function editar(Request $request, int $id)
+    {
+        try {
+            $validated = $this->validarFormulario($request);
+
+            $aluno = $this->aluno->getAluno($id);
+            $aluno = $this->aluno->editar($aluno, $validated);
+        } catch (\Throwable $th) {
+            return Exception::handle($th);
+        }
+
+        return response()->json([
+            'mensagem' => 'Aluno editado com sucesso.',
             'dados' => [
                 $aluno->toArray()
             ]

@@ -61,6 +61,13 @@ class AlunoRepository
         return $this->aluno->create($dados);
     }
 
+    public function editar(Aluno $aluno, array $dados)
+    {
+        $aluno->update($dados);
+
+        return $aluno;
+    }
+
     public function excluir(Aluno $aluno): void
     {
         $aluno->delete();
