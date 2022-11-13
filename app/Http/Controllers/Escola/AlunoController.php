@@ -37,6 +37,20 @@ class AlunoController extends Controller
         ]);
     }
 
+    public function listar(Request $request)
+    {
+        try {
+            $alunos = $this->aluno->listar();
+        } catch (\Throwable $th) {
+            return Exception::handle($th);
+        }
+
+        return response()->json([
+            'mensagem' => 'Alunos encontrados com sucesso.',
+            'dados' => $alunos->toArray()
+        ]);
+    }
+
     public function salvar(Request $request)
     {
         try {

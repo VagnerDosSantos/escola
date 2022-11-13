@@ -5,6 +5,7 @@ namespace App\Repositories;
 use App\Enums\HttpStatus;
 use App\Models\Aluno;
 use App\Utils\Utils;
+use Illuminate\Database\Eloquent\Collection;
 
 class AlunoRepository
 {
@@ -22,6 +23,17 @@ class AlunoRepository
         }
 
         return $aluno;
+    }
+
+    public function listar(): Collection
+    {
+        $alunos = $this->aluno->where('ano_letivo', 2023)->get();
+
+        if ($alunos->isEmpty()) {
+            throw new \Exception('Nenhum aluno encontrado', HttpStatus::NOT_FOUND->value);
+        }
+
+        return $alunos;
     }
 
     public function salvar(array $dados): Aluno
