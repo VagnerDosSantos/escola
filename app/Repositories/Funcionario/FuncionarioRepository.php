@@ -5,6 +5,7 @@ namespace App\Repositories\Funcionario;
 use App\Enums\HttpStatus;
 use App\Models\Funcionario;
 use App\Utils\Utils;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\DB;
 
 class FuncionarioRepository
@@ -29,6 +30,17 @@ class FuncionarioRepository
         }
 
         return $funcionario;
+    }
+
+    public function listar(): Collection
+    {
+        $funcionarios = $this->model->bySchool()->get();
+
+        if ($funcionarios->isEmpty()) {
+            throw new \Exception('Nenhum funcionário encontrado', HttpStatus::NOT_FOUND->value);
+        }
+
+        return $funcionarios;
     }
 
     public function salvar(array $data): Funcionario
