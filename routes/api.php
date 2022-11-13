@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Escola\AlunoController;
 use App\Http\Controllers\Escola\EscolaController;
 use App\Http\Controllers\Escola\FuncionarioController;
 use Illuminate\Http\Request;
@@ -27,6 +28,10 @@ Route::prefix('funcionario')->group(function () {
     Route::put('/{id}', [FuncionarioController::class, 'editar']);
     Route::delete('/{id}', [FuncionarioController::class, 'excluir']);
     Route::patch('/{id}', [FuncionarioController::class, 'recuperar']);
+});
+
+Route::prefix('aluno')->group(function () {
+    Route::post('/', [AlunoController::class, 'salvar']);
 });
 
 // Route::middleware('auth:sanctum')->get('/user', function (Request $request) {

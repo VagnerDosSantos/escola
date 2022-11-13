@@ -21,11 +21,9 @@ use Illuminate\Validation\Rules\RequiredIf;
 
 class FuncionarioController extends Controller
 {
-    private FuncionarioRepository $funcionario;
-
-    public function __construct(FuncionarioRepository $funcionario)
-    {
-        $this->funcionario = $funcionario;
+    public function __construct(
+        private FuncionarioRepository $funcionario
+    ) {
     }
 
     public function getFuncionario(int $id)
