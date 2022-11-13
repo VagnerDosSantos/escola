@@ -13,6 +13,17 @@ class FuncionarioRepository
     ) {
     }
 
+    public function getFuncionario(string $id): Funcionario
+    {
+        $funcionario = $this->model->find($id);
+
+        if (!$funcionario) {
+            throw new \Exception('Funcionário não encontrado', HttpStatus::NOT_FOUND->value);
+        }
+
+        return $funcionario;
+    }
+
     public function salvar(array $data): Funcionario
     {
         $funcionario = $this->model
@@ -33,10 +44,7 @@ class FuncionarioRepository
 
     public function editar(int $id, array $data): Funcionario
     {
-        $funcionario = $this->model->where([
-            ['id', $id],
-            ['escola_id', $data['escola_id']],
-        ])->first();
+        $funcionario = $this->model->find($id);
 
         if (!$funcionario) {
             throw new \Exception('Funcionário não encontrado.', HttpStatus::NOT_FOUND->value);
@@ -45,5 +53,10 @@ class FuncionarioRepository
         $funcionario->update($data);
 
         return $funcionario;
+    }
+
+    public function excluir(Funcionario $funcionario)
+    {
+        $funcionario->delete();
     }
 }

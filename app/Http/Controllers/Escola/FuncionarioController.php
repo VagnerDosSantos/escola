@@ -58,6 +58,18 @@ class FuncionarioController extends Controller
         ], HttpStatus::OK->value);
     }
 
+    public function excluir(Request $request, int $id)
+    {
+        try {
+            $funcionario = $this->funcionario->getFuncionario($id);
+            $this->funcionario->excluir($funcionario);
+        } catch (\Throwable $th) {
+            return Exception::handle($th);
+        }
+
+        return response()->noContent();
+    }
+
     private function validarCadastro(Request $request)
     {
         $nacionalidadeBrasileira = in_array($request->nacionalidade, [
