@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Escola;
 use App\Enums\HttpStatus;
 use App\Enums\Nacionalidade;
 use App\Http\Controllers\Controller;
-use App\Models\Funcionario;
 use App\Repositories\Funcionario\FuncionarioRepository;
 use App\Rules\AcceptedValueWhen;
 use App\Rules\Cpf;
@@ -87,7 +86,7 @@ class FuncionarioController extends Controller
         $validaAnoConclusao = [
             'date_format:Y',
             'gte:1940',
-            'lte:' . date('Y'),
+            'lte:'.date('Y'),
         ];
 
         $validaTipoPosGraduacao = [
@@ -161,13 +160,13 @@ class FuncionarioController extends Controller
             ],
             'ano_conclusao_curso_1' => [
                 ...$validaAnoConclusao,
-                new RequiredIf(!empty($request->codigo_curso_1)),
+                new RequiredIf(! empty($request->codigo_curso_1)),
                 new ProhibitedIf(empty($request->codigo_curso_1)),
             ],
             'instituicao_curso_1' => [
                 'nullable',
                 'exists:instituicoes_ensino_superior,id',
-                new RequiredIf(!empty($request->codigo_curso_1)),
+                new RequiredIf(! empty($request->codigo_curso_1)),
                 new ProhibitedIf(empty($request->codigo_curso_1)),
             ],
             'codigo_curso_2' => [
@@ -176,13 +175,13 @@ class FuncionarioController extends Controller
             ],
             'ano_conclusao_curso_2' => [
                 ...$validaAnoConclusao,
-                new RequiredIf(!empty($request->codigo_curso_2)),
+                new RequiredIf(! empty($request->codigo_curso_2)),
                 new ProhibitedIf(empty($request->codigo_curso_2)),
             ],
             'instituicao_curso_2' => [
                 'nullable',
                 'exists:instituicoes_ensino_superior,id',
-                new RequiredIf(!empty($request->codigo_curso_2)),
+                new RequiredIf(! empty($request->codigo_curso_2)),
                 new ProhibitedIf(empty($request->codigo_curso_2)),
             ],
             'codigo_curso_3' => [
@@ -191,13 +190,13 @@ class FuncionarioController extends Controller
             ],
             'ano_conclusao_curso_3' => [
                 ...$validaAnoConclusao,
-                new RequiredIf(!empty($request->codigo_curso_3)),
+                new RequiredIf(! empty($request->codigo_curso_3)),
                 new ProhibitedIf(empty($request->codigo_curso_3)),
             ],
             'instituicao_curso_3' => [
                 'nullable',
                 'exists:instituicoes_ensino_superior,id',
-                new RequiredIf(!empty($request->codigo_curso_3)),
+                new RequiredIf(! empty($request->codigo_curso_3)),
                 new ProhibitedIf(empty($request->codigo_curso_3)),
             ],
             'componente_curricular_1' => [
@@ -225,13 +224,13 @@ class FuncionarioController extends Controller
             'area_pos_graduacao_1' => [
                 'nullable',
                 'exists:areas_pos_graduacao,id',
-                new RequiredIf(!empty($request->tipo_pos_graduacao_1)),
+                new RequiredIf(! empty($request->tipo_pos_graduacao_1)),
                 new ProhibitedIf(empty($request->tipo_pos_graduacao_1)),
             ],
             'ano_conclusao_pos_graduacao_1' => [
                 'nullable',
                 'date_format:Y',
-                new RequiredIf(!empty($request->tipo_pos_graduacao_1)),
+                new RequiredIf(! empty($request->tipo_pos_graduacao_1)),
                 new ProhibitedIf(empty($request->tipo_pos_graduacao_1)),
                 new ValidaAnoConclusaoPosGraduacao($conclusaoDeCursosSuperiores),
             ],
@@ -239,13 +238,13 @@ class FuncionarioController extends Controller
             'area_pos_graduacao_2' => [
                 'nullable',
                 'exists:areas_pos_graduacao,id',
-                new RequiredIf(!empty($request->tipo_pos_graduacao_2)),
+                new RequiredIf(! empty($request->tipo_pos_graduacao_2)),
                 new ProhibitedIf(empty($request->tipo_pos_graduacao_2)),
             ],
             'ano_conclusao_pos_graduacao_2' => [
                 'nullable',
                 'date_format:Y',
-                new RequiredIf(!empty($request->tipo_pos_graduacao_2)),
+                new RequiredIf(! empty($request->tipo_pos_graduacao_2)),
                 new ProhibitedIf(empty($request->tipo_pos_graduacao_2)),
                 new ValidaAnoConclusaoPosGraduacao($conclusaoDeCursosSuperiores),
             ],
@@ -253,13 +252,13 @@ class FuncionarioController extends Controller
             'area_pos_graduacao_3' => [
                 'nullable',
                 'exists:areas_pos_graduacao,id',
-                new RequiredIf(!empty($request->tipo_pos_graduacao_3)),
+                new RequiredIf(! empty($request->tipo_pos_graduacao_3)),
                 new ProhibitedIf(empty($request->tipo_pos_graduacao_3)),
             ],
             'ano_conclusao_pos_graduacao_3' => [
                 'nullable',
                 'date_format:Y',
-                new RequiredIf(!empty($request->tipo_pos_graduacao_3)),
+                new RequiredIf(! empty($request->tipo_pos_graduacao_3)),
                 new ProhibitedIf(empty($request->tipo_pos_graduacao_3)),
                 new ValidaAnoConclusaoPosGraduacao($conclusaoDeCursosSuperiores),
             ],
@@ -267,13 +266,13 @@ class FuncionarioController extends Controller
             'area_pos_graduacao_4' => [
                 'nullable',
                 'exists:areas_pos_graduacao,id',
-                new RequiredIf(!empty($request->tipo_pos_graduacao_4)),
+                new RequiredIf(! empty($request->tipo_pos_graduacao_4)),
                 new ProhibitedIf(empty($request->tipo_pos_graduacao_4)),
             ],
             'ano_conclusao_pos_graduacao_4' => [
                 'nullable',
                 'date_format:Y',
-                new RequiredIf(!empty($request->tipo_pos_graduacao_4)),
+                new RequiredIf(! empty($request->tipo_pos_graduacao_4)),
                 new ProhibitedIf(empty($request->tipo_pos_graduacao_4)),
                 new ValidaAnoConclusaoPosGraduacao($conclusaoDeCursosSuperiores),
             ],
@@ -281,13 +280,13 @@ class FuncionarioController extends Controller
             'area_pos_graduacao_5' => [
                 'nullable',
                 'exists:areas_pos_graduacao,id',
-                new RequiredIf(!empty($request->tipo_pos_graduacao_5)),
+                new RequiredIf(! empty($request->tipo_pos_graduacao_5)),
                 new ProhibitedIf(empty($request->tipo_pos_graduacao_5)),
             ],
             'ano_conclusao_pos_graduacao_5' => [
                 'nullable',
                 'date_format:Y',
-                new RequiredIf(!empty($request->tipo_pos_graduacao_5)),
+                new RequiredIf(! empty($request->tipo_pos_graduacao_5)),
                 new ProhibitedIf(empty($request->tipo_pos_graduacao_5)),
                 new ValidaAnoConclusaoPosGraduacao($conclusaoDeCursosSuperiores),
             ],
@@ -295,13 +294,13 @@ class FuncionarioController extends Controller
             'area_pos_graduacao_6' => [
                 'nullable',
                 'exists:areas_pos_graduacao,id',
-                new RequiredIf(!empty($request->tipo_pos_graduacao_6)),
+                new RequiredIf(! empty($request->tipo_pos_graduacao_6)),
                 new ProhibitedIf(empty($request->tipo_pos_graduacao_6)),
             ],
             'ano_conclusao_pos_graduacao_6' => [
                 'nullable',
                 'date_format:Y',
-                new RequiredIf(!empty($request->tipo_pos_graduacao_6)),
+                new RequiredIf(! empty($request->tipo_pos_graduacao_6)),
                 new ProhibitedIf(empty($request->tipo_pos_graduacao_6)),
                 new ValidaAnoConclusaoPosGraduacao($conclusaoDeCursosSuperiores),
             ],

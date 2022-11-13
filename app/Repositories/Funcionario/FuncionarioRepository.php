@@ -17,7 +17,7 @@ class FuncionarioRepository
     public function getFuncionario(string $id): Funcionario
     {
         $funcionario = $this->model->withTrashed()->find($id);
-        dd($funcionario->audits()->get()->toArray());
+
         if (!$funcionario) {
             throw new \Exception('Funcionário não encontrado', HttpStatus::NOT_FOUND->value);
         }
@@ -39,13 +39,14 @@ class FuncionarioRepository
         $data['codigo_sistema'] = $funcionario->codigo_sistema ?? Utils::generateUniqueId();
 
         DB::statement('SET FOREIGN_KEY_CHECKS=0;');
+
         return $this->model->create($data);
     }
 
     public function editar(int $id, array $data): Funcionario
     {
         $funcionario = $this->model->bySchool()->find($id);
-        
+
         if (!$funcionario) {
             throw new \Exception('Funcionário não encontrado.', HttpStatus::NOT_FOUND->value);
         }

@@ -14,6 +14,7 @@ class Funcionario extends Model
     // use SchoolScope;
 
     protected $guarded = [];
+
     protected $casts = [
         'deficiencias_altas_habilidades_autismo' => 'array',
         'formacao_continuada' => 'array',

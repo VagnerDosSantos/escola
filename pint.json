@@ -1,5 +1,5 @@
 {
-    "preset": "symfony",
+    "preset": "psr12",
     "notPath": [
         "database/seeders/InstituicoesEnsinoSeeder.php",
         "database/seeders/MunicipiosSeeder.php",

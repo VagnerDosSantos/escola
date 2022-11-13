@@ -7,6 +7,7 @@ use Illuminate\Contracts\Validation\Rule;
 class AcceptedValueWhen implements Rule
 {
     private bool $condition;
+
     private string|int $accepts;
 
     /**
@@ -23,9 +24,8 @@ class AcceptedValueWhen implements Rule
     /**
      * Determine if the validation rule passes.
      *
-     * @param string $attribute
-     * @param mixed  $value
-     *
+     * @param  string  $attribute
+     * @param  mixed  $value
      * @return bool
      */
     public function passes($attribute, $value)
