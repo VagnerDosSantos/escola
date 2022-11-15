@@ -24,6 +24,7 @@ class ConfirmablePasswordController extends Controller
     /**
      * Confirm the user's password.
      *
+     * @param  \Illuminate\Http\Request  $request
      * @return mixed
      */
     public function store(Request $request)
@@ -32,7 +33,9 @@ class ConfirmablePasswordController extends Controller
             'email' => $request->user()->email,
             'password' => $request->password,
         ])) {
-            throw ValidationException::withMessages(['password' => __('auth.password')]);
+            throw ValidationException::withMessages([
+                'password' => __('auth.password'),
+            ]);
         }
 
         $request->session()->put('auth.password_confirmed_at', time());
