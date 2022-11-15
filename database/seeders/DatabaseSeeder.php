@@ -53,6 +53,7 @@ class DatabaseSeeder extends Seeder
             DistritosSeeder::class,
             OrgaoRegionalSeeder::class,
             AreasPosGraduacaoSeeder::class,
+            CargosSeeder::class,
         ]);
     }
 }

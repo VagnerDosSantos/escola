@@ -4,8 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
+return new class () extends Migration {
     /**
      * Run the migrations.
      *
@@ -18,8 +17,11 @@ return new class extends Migration
             $table->foreignId('escola_id')->constrained('escolas');
             $table->foreignId('aluno_id')->constrained('alunos');
             $table->foreignId('componente_curricular_id')->constrained('componentes_curriculares');
+            $table->integer('etapa_id');
             $table->year('ano_letivo');
             $table->string('nota', 10);
+
+            $table->foreign('etapa_id')->references('id')->on('etapas');
             $table->timestamps();
         });
     }
