@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Educacenso\ExportacaoController;
+use App\Http\Controllers\Educacenso\ImportacaoController;
 use App\Http\Controllers\Escola\AlunoController;
 use App\Http\Controllers\Escola\EscolaController;
 use App\Http\Controllers\Escola\FuncionarioController;
@@ -47,4 +48,5 @@ Route::prefix('aluno')->group(function () {
 
 Route::prefix('educacenso')->group(function () {
     Route::get('/exportar', [ExportacaoController::class, 'exportar']);
+    Route::post('/importar', [ImportacaoController::class, 'importar']);
 });

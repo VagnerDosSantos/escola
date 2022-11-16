@@ -2,7 +2,7 @@
 
 namespace App\Services\Educacenso\Exportacao;
 
-class Registro60
+class Registro60 extends Exportacao
 {
     public function __construct(
         private $vinculoAluno
