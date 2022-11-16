@@ -2,12 +2,16 @@
 
 namespace App\Http\Controllers\Escola;
 
+use App\Enums\Escola\Funcionario\CriterioAcessoEnum;
+use App\Enums\Escola\Funcionario\SituacaoFuncionalEnum;
 use App\Enums\HttpStatus;
 use App\Enums\Nacionalidade;
 use App\Http\Controllers\Controller;
 use App\Repositories\Funcionario\FuncionarioRepository;
 use App\Rules\AcceptedValueWhen;
 use App\Rules\Cpf;
+use App\Rules\Escola\Funcionario\ValidaCriterioAcessoPrivada;
+use App\Rules\Escola\Funcionario\ValidaCriterioAcessoPublica;
 use App\Rules\FullName;
 use App\Rules\LocalizacaoDiferenciada;
 use App\Rules\ValidaAnoConclusaoPosGraduacao;
@@ -16,6 +20,7 @@ use App\Rules\ValidaCursoSuperior;
 use App\Utils\Exception;
 use App\Utils\ValidateForm;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rules\Enum;
 use Illuminate\Validation\Rules\ProhibitedIf;
 use Illuminate\Validation\Rules\RequiredIf;
 
@@ -193,6 +198,20 @@ class FuncionarioController extends Controller
             'bairro' => 'nullable|string|max:100',
             'deficiencia_altas_habilidades_autismo' => 'nullable|array',
             'escolaridade_concluida' => 'nullable|in:1,2,7,6',
+            'possui_deficiencia' => 'required|boolean',
+            'cargo_id' => 'required|exists:cargos,id',
+            'criterio_acesso' => [
+                'nullable',
+                new RequiredIf(10 == $request->cargo_id),
+                new Enum(CriterioAcessoEnum::class),
+                new ValidaCriterioAcessoPrivada($request->escola_id),
+                new ValidaCriterioAcessoPublica($request->escola_id),
+            ],
+            'situacao_funcional'=> [
+                'nullable',
+                new RequiredIf(10 == $request->cargo_id),
+                new Enum(SituacaoFuncionalEnum::class),
+            ],
             'ensino_medio_cursado' => [
                 'nullable',
                 'required_if:escolaridade_concluida,7,6',

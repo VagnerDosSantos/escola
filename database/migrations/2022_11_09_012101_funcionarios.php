@@ -20,6 +20,9 @@ return new class () extends Migration {
             $table->string('cpf', 11);
             $table->string('nome', 100);
             $table->string('email', 100)->nullable();
+            $table->tinyInteger('situacao_funcional')->nullable();
+            $table->foreignId('cargo_id')->constrained('cargos');
+            $table->tinyInteger('criterio_acesso')->nullable();
             $table->date('data_nascimento');
             $table->boolean('filiacao');
             $table->string('filiacao_1', 100)->nullable(); // Preferencialmente mãe
