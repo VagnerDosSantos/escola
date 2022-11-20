@@ -4,7 +4,7 @@ namespace App\Rules;
 
 use Illuminate\Contracts\Validation\InvokableRule;
 
-class ValidaAnoBissexto implements InvokableRule
+class Telefone implements InvokableRule
 {
     /**
      * Run the validation rule.
@@ -16,9 +16,11 @@ class ValidaAnoBissexto implements InvokableRule
      */
     public function __invoke($attribute, $value, $fail)
     {
-        $bissexto = date('L', mktime(0, 0, 0, 1, 1, $value));
-        if ($bissexto) {
-            $fail('O campo :attribute é um ano bissexto portanto não pode ser inferior a 365 dias do censo escolar.');
+        $number = preg_replace('/[^0-9]/', '', $value);
+        $thirdNumber = substr($number, 2, 1);
+
+        if (strlen($number) == 11 && $thirdNumber != 9) {
+            $fail("O campo {$attribute} possui 11 dígitos, então o primeiro dígito após o DDD deve ser 9.");
         }
     }
 }

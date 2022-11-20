@@ -3,8 +3,9 @@
 namespace App\Rules;
 
 use Illuminate\Contracts\Validation\InvokableRule;
+use Illuminate\Support\Facades\Http;
 
-class ValidaAnoBissexto implements InvokableRule
+class Cep implements InvokableRule
 {
     /**
      * Run the validation rule.
@@ -16,9 +17,11 @@ class ValidaAnoBissexto implements InvokableRule
      */
     public function __invoke($attribute, $value, $fail)
     {
-        $bissexto = date('L', mktime(0, 0, 0, 1, 1, $value));
-        if ($bissexto) {
-            $fail('O campo :attribute é um ano bissexto portanto não pode ser inferior a 365 dias do censo escolar.');
+        $cep = preg_replace("/[^0-9]/", "", $value);
+        $result = Http::get("http://republicavirtual.com.br/web_cep.php?cep={$cep}&formato=json")->json();
+
+        if ($result['resultado'] == 0) {
+            $fail('Não foi possível localizar um CEP válido para o valor informado.');
         }
     }
 }

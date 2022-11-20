@@ -31,9 +31,11 @@ return new class () extends Migration {
             $table->string('telefone_1', 11)->nullable();
             $table->string('telefone_2', 11)->nullable();
             $table->string('email', 100)->nullable();
+            $table->string('orgao_regional_id', 10)->nullable();
             $table->tinyInteger('dependencia_administrativa');
             $table->string('orgao_escola_publica_vinculada')->nullable();
             $table->string('mantenedora_escola_privada')->nullable();
+            $table->tinyInteger('categoria_escola_privada')->nullable();
             $table->string('cnpj_mantenedora_escola_privada', 14)->nullable();
             $table->string('cnpj_escola_privada', 14)->nullable();
             $table->string('poder_publico_responsavel_parceria_convenio')->nullable();
@@ -53,6 +55,7 @@ return new class () extends Migration {
 
             $table->foreign('municipio_id')->references('id')->on('municipios');
             $table->foreign('distrito_id')->references('id')->on('distritos');
+            $table->foreign('orgao_regional_id')->references('id')->on('orgaos_regionais');
         });
     }
 

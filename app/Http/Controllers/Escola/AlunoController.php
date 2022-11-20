@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Escola;
 
 use App\Enums\HttpStatus;
 use App\Enums\Nacionalidade;
+use App\Enums\Sexo;
 use App\Http\Controllers\Controller;
 use App\Repositories\AlunoRepository;
 use App\Rules\AcceptedValueWhen;
@@ -13,6 +14,7 @@ use App\Rules\LocalizacaoDiferenciada;
 use App\Utils\Exception;
 use App\Utils\ValidateForm;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rules\Enum;
 use Illuminate\Validation\Rules\ProhibitedIf;
 
 class AlunoController extends Controller
@@ -130,7 +132,7 @@ class AlunoController extends Controller
             'filiacao' => 'required|boolean',
             'filiacao_1' => ['required_if:filiacao,1', 'prohibited_if:filiacao,0', 'string', 'max:100', new FullName()],
             'filiacao_2' => ['nullable', 'string', 'prohibited_if:filiacao,0', 'max:100', new FullName()],
-            'sexo' => 'required|integer|in:1,2',
+            'sexo' => ['required','integer', new Enum(Sexo::class)],
             'cor_raca' => 'required|integer|in:0,1,2,3,4,5',
             'nacionalidade' => 'required|integer|in:1,2,3',
             'pais_nacionalidade_id' => [

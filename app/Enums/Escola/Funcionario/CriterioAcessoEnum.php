@@ -14,7 +14,7 @@ enum CriterioAcessoEnum: int
 
     public function traducao(): string
     {
-        return match($this) {
+        return match ($this) {
             self::ProprietarioOuSocioEscola => 'Ser proprietário(a) ou sócio(a)-proprietário(a) da escola',
             self::ExclusivamentePorIndicacaoEscola => 'Exclusivamente por indicação/escolha da gestão',
             self::ProcessoSeletivoQualificadoEscola => 'Processo seletivo qualificado e escolha/nomeação da gestão',
@@ -24,5 +24,4 @@ enum CriterioAcessoEnum: int
             self::Outros => 'Outros',
         };
     }
-
 }
