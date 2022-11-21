@@ -7,7 +7,7 @@ enum CategoriaEscolaPrivada: int
     case Particular = 1;
     case Comunitaria = 2;
     case Confessional = 3;
-    case Filantrópica = 4;
+    case Filantropica = 4;
 
     public function traducao()
     {
@@ -15,7 +15,7 @@ enum CategoriaEscolaPrivada: int
             self::Particular => 'Particular',
             self::Comunitaria => 'Comunitária',
             self::Confessional => 'Confessional',
-            self::Filantrópica => 'Filantrópica',
+            self::Filantropica => 'Filantrópica',
         };
     }
 }

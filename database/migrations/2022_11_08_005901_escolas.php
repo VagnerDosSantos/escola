@@ -20,7 +20,7 @@ return new class () extends Migration {
             $table->date('inicio_ano_letivo')->nullable();
             $table->date('termino_ano_letivo')->nullable();
             $table->string('cep', 10);
-            $table->tinyInteger('localizacao');
+            $table->tinyInteger('zona_localizacao');
             $table->tinyInteger('localizacao_diferenciada');
             $table->string('municipio_id', 10);
             $table->string('distrito_id', 20);
